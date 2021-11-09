@@ -35,7 +35,12 @@ const Landing = () => {
 	// }
 	const testing = () => {
 		axios
-			.get("https://api.github.com/users/kaen7/repos")
+			.get("https://api.github.com/users/kaen7/repos", {
+				headers: {
+					Accept: "application/vnd.github.nightshade-preview+json",
+					// Authorization: `Token b6b0e4efea3eb607fe0b23bcb5bc8f7d4d4269b1`,
+				},
+			})
 			.then((el) => console.log(el));
 	};
 
