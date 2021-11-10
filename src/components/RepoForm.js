@@ -43,6 +43,39 @@ const RepoForm = ({ repo }) => {
 		setResult(chooseRepo);
 	};
 
+	const onSaveRepo = (name, url) => {
+		let saveRepo = JSON.parse(localStorage.getItem("repoRegister"));
+
+		if (!saveRepo) {
+			const repoRegister = JSON.stringify([{ name: name, url: url }]);
+			localStorage.setItem("repoRegister", repoRegister);
+			alert(
+				"선택하신 Repository가 저장되었습니다 \n최상단 로고를 눌러 이동해주세요"
+			);
+		} else {
+			let boo = true;
+			saveRepo.forEach((el) => {
+				if (el.name === name) {
+					alert("이미 등록된 Repository입니다");
+					boo = false;
+				}
+			});
+			if (saveRepo.length < 4 && boo) {
+				localStorage.setItem(
+					"repoRegister",
+					JSON.stringify([...saveRepo, { name: name, url: url }])
+				);
+				alert(
+					"선택하신 Repository가 저장되었습니다 \n최상단 로고를 눌러 이동해주세요"
+				);
+			} else if (saveRepo.length >= 4) {
+				alert("Repository는 최대 4개까지 등록할 수 있습니다");
+			}
+		}
+
+		console.log(saveRepo);
+	};
+
 	return (
 		<RepoFormSection onChange={onChange}>
 			<input
@@ -53,7 +86,9 @@ const RepoForm = ({ repo }) => {
 
 			<RepoList>
 				{result.map((data, idx) => (
-					<li key={idx}>{data.name}</li>
+					<li key={idx} onClick={() => onSaveRepo(data.name, data.html_url)}>
+						{data.name}
+					</li>
 				))}
 			</RepoList>
 		</RepoFormSection>
