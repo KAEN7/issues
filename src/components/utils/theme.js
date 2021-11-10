@@ -25,10 +25,6 @@ const theme = {
 
 // color
 export const color = {
-	basic: "#3d3d3d",
-	point: "#f47676",
-	darkBasic: "#171717",
-	lightBasic: "#555555",
 	white: "#ffffe7",
 	warring: "#ff5b4f",
 };

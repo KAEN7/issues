@@ -1,7 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+
+// 컴포넌트
 import Landing from "./page/Landing";
+import Repogitory from "./page/Repogitory";
 
 const GlobalStyles = createGlobalStyle`
 	* {
@@ -58,6 +61,7 @@ function App() {
 				<GlobalStyles />
 				<Routes>
 					<Route exact path="/" element={<Landing />} />
+					<Route path="/repo" element={<Repogitory />} />
 				</Routes>
 			</Router>
 		</div>

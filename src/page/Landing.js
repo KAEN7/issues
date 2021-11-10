@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { flexCenterDir } from "../components/utils/theme";
+import { Link } from "react-router-dom";
 
 // 이미지
 import issuesIcon from "../img/issues.svg";
@@ -37,13 +38,19 @@ const Landing = () => {
 
 	const changeHandler = (data) => {
 		setRepo(data);
+		const repoData = JSON.stringify(data);
+		localStorage.setItem("repoData", repoData);
 		setToggle(!toggle);
 	};
 
+	const username = localStorage.getItem("username");
+
 	return (
 		<LandingSection>
-			<img src={issuesIcon} alt="issues" />
-			{toggle ? (
+			<Link to="/repo">
+				<img src={issuesIcon} alt="issues" />
+			</Link>
+			{toggle && !username ? (
 				<NameForm changeHandler={changeHandler} />
 			) : (
 				<RepoForm repo={repo} />

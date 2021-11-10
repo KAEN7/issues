@@ -12,12 +12,14 @@ const NameForm = ({ changeHandler }) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
+		localStorage.setItem("username", name);
+		const username = localStorage.getItem("username");
 
 		if (name === "") {
 			alert("계정명을 입력해주세요!");
 		} else {
 			await axios
-				.get(`https://api.github.com/users/${name}/repos`, {
+				.get(`https://api.github.com/users/${username}/repos`, {
 					headers: {
 						Accept: "application/vnd.github.nightshade-preview+json",
 						// Authorization: `Token b6b4269b1...`,

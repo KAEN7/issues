@@ -25,7 +25,7 @@ const RepoList = styled.ul`
 		border-radius: 2vh;
 
 		&:hover {
-			box-shadow: 3px 4px white;
+			box-shadow: 13px 14px white;
 			transform: translateY(-10px);
 			transition-duration: 0.7s;
 		}
@@ -36,14 +36,15 @@ const RepoForm = ({ repo }) => {
 	const [value, setValue] = useState("");
 	const [result, setResult] = useState([]);
 
-	const onSubmit = (e) => {
+	const onChange = (e) => {
 		e.preventDefault();
-		const chooseRepo = repo.filter((data) => data.name.includes(value));
+		const repoData = JSON.parse(localStorage.getItem("repoData"));
+		const chooseRepo = repoData.filter((data) => data.name.includes(value));
 		setResult(chooseRepo);
 	};
 
 	return (
-		<RepoFormSection onSubmit={onSubmit}>
+		<RepoFormSection onChange={onChange}>
 			<input
 				placeholder="레포지토리명을 입력해주세요"
 				value={value}
