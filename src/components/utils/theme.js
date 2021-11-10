@@ -27,6 +27,7 @@ const theme = {
 export const color = {
 	white: "#ffffe7",
 	warring: "#ff5b4f",
+	point: "#F13A3A",
 };
 
 // flex 디자인
