@@ -30,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
 		color: #f5f5f3;
     padding: 13px;
     margin-bottom: 1rem;
+		text-align: center;
     border: 3px solid #f5f5f3;
     border-radius: 2vh;
 		

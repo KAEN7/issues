@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { flexCenterDir } from "../components/utils/theme";
 import axios from "axios";
@@ -21,35 +21,55 @@ const LandingSection = styled.div`
 	}
 `;
 
+const NameForm = styled.form`
+	${flexCenterDir}
+`;
+
+const RepoForm = styled.form`
+	${flexCenterDir}
+`;
+
 const Landing = () => {
-	// async function getRepos() {
-	// 	// clear();
-	// 	const
-	// 	const url = "https://api.github.com/users/13akstjq/repos";
-	// 	const response = await fetch(url, {
-	// 		method: "GET",
-	// 		headers: headers,
-	// 	});
-	// 	const result = await response.json();
-	// 	console.log(result);
-	// }
-	const testing = () => {
-		axios
-			.get("https://api.github.com/users/kaen7/repos", {
-				headers: {
-					Accept: "application/vnd.github.nightshade-preview+json",
-					// Authorization: `Token b6b0e4efea3eb607fe0b23bcb5bc8f7d4d4269b1`,
-				},
-			})
-			.then((el) => console.log(el));
+	const [name, setName] = useState("");
+	// data.name으로 하면 이름만 나옴 ㅇㅋ? 유남쎙?
+	const [repo, setRepo] = useState([]);
+	const [toggle, setToggle] = useState(true);
+
+	const onSubmit = async (e) => {
+		e.preventDefault();
+
+		if (name === "") {
+			alert("계정명을 입력해주세요!");
+		} else {
+			await axios
+				.get(`https://api.github.com/users/${name}/repos`, {
+					headers: {
+						Accept: "application/vnd.github.nightshade-preview+json",
+						// Authorization: `Token b6b4269b1...`,
+					},
+				})
+				.then((el) => setRepo(el.data));
+			setToggle(!toggle);
+		}
 	};
 
 	return (
 		<LandingSection>
 			<img src={issuesIcon} alt="issues" />
-			<input placeholder="GitHub 계정명을 입력해주세요" />
-			<input placeholder="레포지토리명을 입력해주세요" />
-			<button onClick={testing}>asdfasdf</button>
+			{toggle ? (
+				<NameForm onSubmit={onSubmit}>
+					<input
+						placeholder="GitHub 계정명을 입력해주세요"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
+					<button>입력하기</button>
+				</NameForm>
+			) : (
+				<RepoForm>
+					<input placeholder="레포지토리명을 입력해주세요" />
+				</RepoForm>
+			)}
 		</LandingSection>
 	);
 };
