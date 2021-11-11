@@ -22,7 +22,7 @@ const LandingSection = styled.div`
 
 	img {
 		height: 10rem;
-		margin-top: 25rem;
+		margin-top: 20rem;
 		margin-bottom: 3rem;
 
 		@media ${(props) => props.theme.tablet} {

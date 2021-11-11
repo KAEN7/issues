@@ -3,13 +3,14 @@ import styled from "styled-components";
 import { flexCenter, flexCenterDir, color } from "./utils/theme";
 
 const RepoListBox = styled.div`
-	width: 40rem;
-	height: 8rem;
+	width: 30rem;
+	height: 6rem;
 	position: relative;
 	margin: 2rem;
+	cursor: pointer;
 	&:hover {
 		.RepoListOuter {
-			transform: translateX(8rem);
+			transform: translateX(6rem);
 			transition-duration: 0.2s;
 		}
 		.RepoListInner {
@@ -21,28 +22,29 @@ const RepoListBox = styled.div`
 const RepoListOuter = styled.div`
 	${flexCenter}
 
-	width: 40rem;
-	height: 8rem;
-	background: #c4c4c4;
+	width: 30rem;
+	height: 6rem;
+	background: #666667;
 	border-radius: 0 4vh 4vh 0;
+	font-size: 1.3rem;
 `;
 
 const RepoListInner = styled.div`
 	${flexCenter}
 
-	width: 8rem;
-	height: 8rem;
+	width: 6rem;
+	height: 6rem;
 	background: ${color.point};
-	cursor: pointer;
 	position: absolute;
-	transform: translateY(-8rem);
+	transform: translateY(-6rem);
 	z-index: -1;
 `;
 
-const RepoBox = () => {
+const RepoBox = ({ data }) => {
+	console.log(data);
 	return (
 		<RepoListBox>
-			<RepoListOuter className="RepoListOuter"></RepoListOuter>
+			<RepoListOuter className="RepoListOuter">{data.name}</RepoListOuter>
 			<RepoListInner className="RepoListInner">X</RepoListInner>
 		</RepoListBox>
 	);
