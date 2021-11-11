@@ -24,6 +24,10 @@ const LandingSection = styled.div`
 		height: 10rem;
 		margin-top: 25rem;
 		margin-bottom: 3rem;
+
+		@media ${(props) => props.theme.tablet} {
+			height: 7rem;
+		}
 	}
 
 	input {

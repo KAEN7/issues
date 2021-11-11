@@ -6,7 +6,6 @@ const RepoFormSection = styled.form`
 	${flexCenterDir}
 
 	width: 100%;
-	height: 100%;
 `;
 
 const RepoList = styled.ul`
@@ -27,7 +26,7 @@ const RepoList = styled.ul`
 		&:hover {
 			box-shadow: 13px 14px white;
 			transform: translateY(-10px);
-			transition-duration: 0.7s;
+			transition-duration: 0.4s;
 		}
 	}
 `;
@@ -72,8 +71,6 @@ const RepoForm = ({ repo }) => {
 				alert("Repository는 최대 4개까지 등록할 수 있습니다");
 			}
 		}
-
-		console.log(saveRepo);
 	};
 
 	return (
@@ -82,6 +79,7 @@ const RepoForm = ({ repo }) => {
 				placeholder="레포지토리명을 입력해주세요"
 				value={value}
 				onChange={(e) => setValue(e.target.value)}
+				autoFocus
 			/>
 
 			<RepoList>
