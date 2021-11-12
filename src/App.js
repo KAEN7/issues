@@ -4,6 +4,7 @@ import { createGlobalStyle } from "styled-components";
 
 // 컴포넌트
 import Landing from "./page/Landing";
+import Nav from "./page/Nav";
 import Repogitory from "./page/Repogitory";
 
 const GlobalStyles = createGlobalStyle`
@@ -63,6 +64,7 @@ function App() {
 					<Route exact path="/" element={<Landing />} />
 					<Route path="/repo" element={<Repogitory />} />
 				</Routes>
+				<Nav />
 			</Router>
 		</div>
 	);
