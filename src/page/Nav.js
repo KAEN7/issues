@@ -28,7 +28,7 @@ const Nav = () => {
 			<Link to="/repo" className="btn" style={{ margin: "0 1rem" }}>
 				Repo
 			</Link>
-			<Link to="/" className="btn">
+			<Link to="/issues" className="btn">
 				Issues
 			</Link>
 		</NavSection>
