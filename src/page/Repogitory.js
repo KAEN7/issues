@@ -13,13 +13,16 @@ const RepoSection = styled.div`
 	${pageSetting}
 
 	padding: 1rem;
+
+	.logo {
+		margin-top: 15rem;
+	}
 `;
 
 const RepoBtnBox = styled.div`
 	${flexCenter}
 
 	max-width: 70rem;
-	overflow-x: auto;
 	margin: 1rem 0;
 `;
 
@@ -63,7 +66,7 @@ const Repogitory = () => {
 
 	return (
 		<RepoSection>
-			<Link to="/">
+			<Link to="/" className="logo">
 				<img src={RepositoryIcon} alt="Repository" />
 			</Link>
 			<RepoBtnBox>

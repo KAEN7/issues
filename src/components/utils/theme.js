@@ -44,10 +44,13 @@ export const flexCenterDir = css`
 `;
 
 export const pageSetting = css`
-	${flexCenterDir}
-
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 	width: 100vw;
 	height: 100vh;
+	box-sizing: border-box;
+	padding: 3rem;
 	overflow-y: auto;
 	::-webkit-scrollbar {
 		display: none;

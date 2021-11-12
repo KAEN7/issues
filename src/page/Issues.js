@@ -7,10 +7,13 @@ import {
 	overflowY,
 } from "../components/utils/theme";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const IssuesSection = styled.div`
 	${pageSetting}
+
+	button {
+		margin-top: 25rem;
+	}
 `;
 
 const IssueBox = styled.div`
@@ -39,6 +42,14 @@ const IssueBox = styled.div`
 		border-bottom: 2px solid ${color.white};
 	}
 
+	h4 {
+		width: 100%;
+		color: ${color.point};
+		display: flex;
+		justify-content: flex-end;
+		margin-bottom: 1rem;
+	}
+
 	div {
 		width: 100%;
 	}
@@ -60,10 +71,15 @@ const Isseus = () => {
 						Accept: "application/vnd.github.nightshade-preview+json",
 					},
 				})
-				.then((el) => el.data.forEach((ele) => setIssue([...issue, ele])));
+				.then((el) =>
+					el.data.forEach((ele) => {
+						ele.repo = data.name;
+						setIssue([...issue, ele]);
+					})
+				);
 		});
 	};
-
+	console.log(issue);
 	return (
 		<IssuesSection>
 			<button onClick={() => onIssues()}>your issues</button>
@@ -73,6 +89,7 @@ const Isseus = () => {
 					onClick={() => window.open(`${data.html_url}`, "_blank")}
 				>
 					<h2>{data.title}</h2>
+					<h4>{data.repo}</h4>
 					<div>{data.body}</div>
 				</IssueBox>
 			))}
