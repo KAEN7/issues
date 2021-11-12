@@ -20,10 +20,13 @@ const LandingSection = styled.div`
 		display: none;
 	}
 
+	.logo {
+		margin-top: 15rem;
+		margin-bottom: 3rem;
+	}
+
 	img {
 		height: 10rem;
-		margin-top: 20rem;
-		margin-bottom: 3rem;
 
 		@media ${(props) => props.theme.tablet} {
 			height: 7rem;
@@ -51,7 +54,7 @@ const Landing = () => {
 
 	return (
 		<LandingSection>
-			<Link to="/repo">
+			<Link to="/repo" className="logo">
 				<img src={issuesIcon} alt="issues" />
 			</Link>
 			{toggle && !username ? (
