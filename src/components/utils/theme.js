@@ -26,7 +26,7 @@ const theme = {
 // color
 export const color = {
 	white: "#ffffe7",
-	warring: "#ff5b4f",
+	gray: "#3c3c3d",
 	point: "#F13A3A",
 };
 
@@ -41,6 +41,17 @@ export const flexCenterDir = css`
 	${flexCenter}
 
 	flex-direction: column;
+`;
+
+export const pageSetting = css`
+	${flexCenterDir}
+
+	width: 100vw;
+	height: 100vh;
+	overflow-y: auto;
+	::-webkit-scrollbar {
+		display: none;
+	}
 `;
 
 export default theme;

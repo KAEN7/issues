@@ -23,8 +23,7 @@ const RepoListOuter = styled.div`
 
 	width: 30rem;
 	height: 6rem;
-	background: #666667;
-	border-radius: 0 4vh 4vh 0;
+	background: ${color.gray};
 	font-size: 1.3rem;
 `;
 
@@ -41,8 +40,6 @@ const RepoListInner = styled.div`
 `;
 
 const RepoBox = ({ data, repoSetHandler }) => {
-	console.log(data);
-
 	// 해당 레포지토리 삭제 핸들러
 	const repoDel = () => {
 		// 전체 배열에서 이름이 같은 요소만 제거후 다시 저장

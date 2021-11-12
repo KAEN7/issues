@@ -6,6 +6,7 @@ import { createGlobalStyle } from "styled-components";
 import Landing from "./page/Landing";
 import Nav from "./page/Nav";
 import Repogitory from "./page/Repogitory";
+import Issues from "./page/Issues";
 
 const GlobalStyles = createGlobalStyle`
 	* {
@@ -16,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
 		list-style: none;
 		text-decoration: none;
 		font-family: Arial, sans-serif, "NotoSansKR";
-    color: white;
+    color: #ffffe7;
 	}
 	
 	body {
@@ -33,8 +34,8 @@ const GlobalStyles = createGlobalStyle`
     padding: 13px;
     margin-bottom: 1rem;
 		text-align: center;
-    border: 4px solid #f5f5f3;
-    border-radius: 2vh;
+    border-bottom: 4px solid #f5f5f3;
+    
 		
 		&::placeholder {
 			color: #f5f5f3;
@@ -63,6 +64,7 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Landing />} />
 					<Route path="/repo" element={<Repogitory />} />
+					<Route path="/issues" element={<Issues />} />
 				</Routes>
 				<Nav />
 			</Router>

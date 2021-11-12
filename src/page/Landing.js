@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { flexCenterDir } from "../components/utils/theme";
+import { pageSetting } from "../components/utils/theme";
 import { Link } from "react-router-dom";
 
 // 이미지
@@ -11,14 +11,7 @@ import NameForm from "../components/NameForm";
 import RepoForm from "../components/RepoForm";
 
 const LandingSection = styled.div`
-	${flexCenterDir}
-
-	width: 100vw;
-	height: 100vh;
-	overflow-y: auto;
-	::-webkit-scrollbar {
-		display: none;
-	}
+	${pageSetting}
 
 	.logo {
 		margin-top: 15rem;

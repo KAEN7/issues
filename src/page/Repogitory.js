@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { flexCenter, flexCenterDir, color } from "../components/utils/theme";
+import { flexCenter, pageSetting, color } from "../components/utils/theme";
 import { Link } from "react-router-dom";
 
 // 이미지
@@ -10,16 +10,9 @@ import RepositoryIcon from "../img/Repository.svg";
 import RepoBox from "../components/RepoBox";
 
 const RepoSection = styled.div`
-	${flexCenterDir}
+	${pageSetting}
 
-	width: 100vw;
-	height: 100vh;
 	padding: 1rem;
-
-	overflow-y: auto;
-	::-webkit-scrollbar {
-		display: none;
-	}
 `;
 
 const RepoBtnBox = styled.div`

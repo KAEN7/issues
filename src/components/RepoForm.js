@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { flexCenter, flexCenterDir } from "./utils/theme";
+import { flexCenter, flexCenterDir, color } from "./utils/theme";
 
 const RepoFormSection = styled.form`
 	${flexCenterDir}
@@ -24,7 +24,7 @@ const RepoList = styled.ul`
 		border-radius: 2vh;
 
 		&:hover {
-			box-shadow: 13px 14px white;
+			box-shadow: 13px 14px ${color.white};
 			transform: translateY(-10px);
 			transition-duration: 0.4s;
 		}
