@@ -7,6 +7,8 @@ const RepoListBox = styled.div`
 	height: 6rem;
 	position: relative;
 	margin: 2rem;
+	cursor: pointer;
+
 	&:hover {
 		.RepoListOuter {
 			transform: translateX(6rem);
@@ -35,7 +37,6 @@ const RepoListInner = styled.div`
 	background: ${color.point};
 	position: absolute;
 	transform: translateY(-6rem);
-	cursor: pointer;
 	z-index: -1;
 `;
 
@@ -53,7 +54,12 @@ const RepoBox = ({ data, repoSetHandler }) => {
 
 	return (
 		<RepoListBox>
-			<RepoListOuter className="RepoListOuter">{data.name}</RepoListOuter>
+			<RepoListOuter
+				className="RepoListOuter"
+				onClick={() => window.open(`${data.url}`, "_blank")}
+			>
+				{data.name}
+			</RepoListOuter>
 			<RepoListInner className="RepoListInner" onClick={repoDel}>
 				X
 			</RepoListInner>
