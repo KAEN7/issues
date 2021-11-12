@@ -54,4 +54,11 @@ export const pageSetting = css`
 	}
 `;
 
+export const overflowY = css`
+	overflow-y: auto;
+	::-webkit-scrollbar {
+		display: none;
+	}
+`;
+
 export default theme;

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { flexCenterDir, pageSetting, color } from "../components/utils/theme";
+import {
+	flexCenterDir,
+	pageSetting,
+	color,
+	overflowY,
+} from "../components/utils/theme";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const IssuesSection = styled.div`
 	${pageSetting}
@@ -10,10 +16,32 @@ const IssuesSection = styled.div`
 const IssueBox = styled.div`
 	${flexCenterDir}
 
+	align-items: flex-start;
 	width: 30rem;
-	height: 8rem;
-	margin: 1rem;
-	background: ${color.gray};
+	min-height: 8rem;
+	max-height: 15rem;
+	margin: 2rem;
+	padding: 1rem;
+	box-sizing: border-box;
+	background: black;
+
+	overflow: hidden;
+	${overflowY}
+
+	&:hover {
+		box-shadow: 13px 14px ${color.white};
+		transform: translateY(-10px);
+		transition-duration: 0.4s;
+	}
+
+	h2 {
+		margin-bottom: 1rem;
+		border-bottom: 2px solid ${color.white};
+	}
+
+	div {
+		width: 100%;
+	}
 `;
 
 const Isseus = () => {
@@ -22,7 +50,7 @@ const Isseus = () => {
 	const repoRegister = JSON.parse(localStorage.getItem("repoRegister"));
 
 	// repoRegister 개수만큼 요청 후 해당 이슈만큼 map으로 뿌려줌
-	const testing = () => {
+	const onIssues = () => {
 		repoRegister.forEach((data) => {
 			const url = `https://api.github.com/repos/${username}/${data.name}/issues`;
 
@@ -32,21 +60,22 @@ const Isseus = () => {
 						Accept: "application/vnd.github.nightshade-preview+json",
 					},
 				})
-				.then((el) => console.log(el.data));
+				.then((el) => el.data.forEach((ele) => setIssue([...issue, ele])));
 		});
 	};
 
-	// 제목, 레포지토리 명 기타 내 맘
 	return (
 		<IssuesSection>
-			<button onClick={() => testing()}>asdfasdf</button>
-			{/* {issue.map((data, idx) => (
-				<IssueBox key={idx}>
+			<button onClick={() => onIssues()}>your issues</button>
+			{issue.map((data, idx) => (
+				<IssueBox
+					key={idx}
+					onClick={() => window.open(`${data.html_url}`, "_blank")}
+				>
 					<h2>{data.title}</h2>
 					<div>{data.body}</div>
-					<div>{data.html_url}</div>
 				</IssueBox>
-			))} */}
+			))}
 		</IssuesSection>
 	);
 };
