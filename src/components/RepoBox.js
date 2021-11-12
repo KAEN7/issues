@@ -40,12 +40,26 @@ const RepoListInner = styled.div`
 	z-index: -1;
 `;
 
-const RepoBox = ({ data }) => {
+const RepoBox = ({ data, repoSetHandler }) => {
 	console.log(data);
+
+	// 해당 레포지토리 삭제 핸들러
+	const repoDel = () => {
+		// 전체 배열에서 이름이 같은 요소만 제거후 다시 저장
+		const repoRegister = JSON.parse(localStorage.getItem("repoRegister"));
+		const newRepoRegister = repoRegister.filter((el) => el.name !== data.name);
+		localStorage.setItem("repoRegister", JSON.stringify(newRepoRegister));
+		repoSetHandler(newRepoRegister); // 재렌더링을 위한 상태 업데이트
+
+		alert("해당 Repository가 삭제되었습니다");
+	};
+
 	return (
 		<RepoListBox>
 			<RepoListOuter className="RepoListOuter">{data.name}</RepoListOuter>
-			<RepoListInner className="RepoListInner">X</RepoListInner>
+			<RepoListInner className="RepoListInner" onClick={repoDel}>
+				X
+			</RepoListInner>
 		</RepoListBox>
 	);
 };

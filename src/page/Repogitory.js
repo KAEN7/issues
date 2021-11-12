@@ -4,7 +4,7 @@ import { flexCenter, flexCenterDir, color } from "../components/utils/theme";
 import { Link } from "react-router-dom";
 
 // 이미지
-import issuesIcon from "../img/issues.svg";
+import RepositoryIcon from "../img/Repository.svg";
 
 // 컴포넌트
 import RepoBox from "../components/RepoBox";
@@ -42,32 +42,48 @@ const RepoDelBtn = styled.button`
 `;
 
 const Repogitory = () => {
-	const repoRegister = JSON.parse(localStorage.getItem("repoRegister"));
+	// 삭제됬을때 재렌더링을 위해 상태로 관리
+	const [repoRegister, setRepoRegister] = useState(
+		JSON.parse(localStorage.getItem("repoRegister"))
+	);
+
+	// 등록된 레포지토리 변경 핸들러
+	const repoSetHandler = (data) => {
+		setRepoRegister(data);
+	};
 
 	// 계정 정보 삭제 핸들러
 	const usernameDel = () => {
 		localStorage.removeItem("username");
 		localStorage.removeItem("repoData");
 		localStorage.removeItem("repoRegister");
+
+		alert("계정정보가 삭제되었습니다");
 	};
 
 	// 전체 레포지토리 삭제 핸들러
 	const allRepoDel = () => {
 		localStorage.removeItem("repoRegister");
+
+		alert("모든 Repository가 삭제되었습니다");
 	};
 
 	return (
 		<RepoSection>
 			<Link to="/">
-				<img src={issuesIcon} alt="issues" />
+				<img src={RepositoryIcon} alt="Repository" />
 			</Link>
 			<RepoBtnBox>
 				<RepoDelBtn onClick={usernameDel}>계정 정보 삭제</RepoDelBtn>
 				<RepoDelBtn onClick={allRepoDel}>전체 Repository 삭제</RepoDelBtn>
 			</RepoBtnBox>
-			{repoRegister.map((data, idx) => (
-				<RepoBox key={idx} data={data} />
-			))}
+			{repoRegister === null ? (
+				<h3>현재 등록된 Repogitory가 없습니다</h3>
+			) : (
+				repoRegister.map((data, idx) => (
+					<RepoBox key={idx} data={data} repoSetHandler={repoSetHandler} />
+				))
+			)}
 		</RepoSection>
 	);
 };
