@@ -11,7 +11,7 @@ const NavSection = styled.div`
 	position: sticky;
 	bottom: 0;
 
-	background: rgba(23, 23, 23, 0.2);
+	background: rgba(23, 23, 23, 1);
 
 	.btn:hover {
 		text-decoration: underline 3px ${color.point};
