@@ -1,21 +1,24 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { flexCenter, color } from "../components/utils/theme";
 
 const PaginationSection = styled.ul`
 	${flexCenter}
 
-	background-color: gray;
 	width: 100%;
-	overflow: visible;
 
 	li {
 		margin: 1rem;
 		cursor: pointer;
+		&:hover {
+			// 현재 페이지도 필요함
+			// 동그랗게 불들어오게할까
+			text-decoration: underline 3px ${color.point};
+		}
 	}
 `;
 
-const Pagination = ({ posts, totalPosts, paginate }) => {
+const Pagination = ({ posts, totalPosts, paginate, currentPage }) => {
 	const pageNumber = [];
 
 	// Math.ceil: 올림
@@ -30,6 +33,15 @@ const Pagination = ({ posts, totalPosts, paginate }) => {
 					key={pageNum}
 					className="pagination_item"
 					onClick={() => paginate(pageNum)}
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						width: "2rem",
+						height: "2rem",
+						background: `${currentPage === pageNum ? color.point : "none"}`,
+						borderRadius: "50%",
+					}}
 				>
 					{pageNum}
 				</li>

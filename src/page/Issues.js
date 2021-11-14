@@ -87,11 +87,6 @@ const Isseus = () => {
 					);
 			}
 
-			// 더미데이터 생성용
-			for (let i = 0; i < 1000; i++) {
-				temp.push({});
-			}
-
 			setIssue(temp);
 		};
 
@@ -102,9 +97,17 @@ const Isseus = () => {
 	const firstPost = lastPost - posts;
 	const currentPosts = issue.slice(firstPost, lastPost);
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
+	console.log(currentPage);
 
 	return (
 		<IssuesSection>
+			<Pagination
+				posts={posts}
+				totalPosts={issue.length}
+				paginate={paginate}
+				currentPage={currentPage}
+			/>
+
 			<ul>
 				{currentPosts.map((data, idx) => (
 					<IssueBox
@@ -117,7 +120,6 @@ const Isseus = () => {
 					</IssueBox>
 				))}
 			</ul>
-			<Pagination posts={posts} totalPosts={issue.length} paginate={paginate} />
 		</IssuesSection>
 	);
 };
