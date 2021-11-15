@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { pageSetting } from "../components/utils/theme";
+import { pageSetting, fadeIn } from "../components/utils/theme";
 import { Link } from "react-router-dom";
 
 // 이미지
@@ -14,6 +14,8 @@ const LandingSection = styled.div`
 	${pageSetting}
 
 	.logo {
+		${fadeIn}
+
 		margin-top: 15rem;
 		margin-bottom: 3rem;
 	}

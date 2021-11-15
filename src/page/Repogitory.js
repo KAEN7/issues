@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { flexCenter, pageSetting, color } from "../components/utils/theme";
+import {
+	flexCenter,
+	pageSetting,
+	fadeIn,
+	color,
+} from "../components/utils/theme";
 import { Link } from "react-router-dom";
 
 // 이미지
@@ -15,6 +20,8 @@ const RepoSection = styled.div`
 	padding: 1rem;
 
 	.logo {
+		${fadeIn}
+
 		margin-top: 15rem;
 	}
 `;

@@ -10,9 +10,8 @@ const PaginationSection = styled.ul`
 	li {
 		margin: 1rem;
 		cursor: pointer;
+
 		&:hover {
-			// 현재 페이지도 필요함
-			// 동그랗게 불들어오게할까
 			text-decoration: underline 3px ${color.point};
 		}
 	}

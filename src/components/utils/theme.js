@@ -64,4 +64,17 @@ export const overflowY = css`
 	}
 `;
 
+export const fadeIn = css`
+	animation: fade-in 3s;
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+`;
+
 export default theme;

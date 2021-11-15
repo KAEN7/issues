@@ -97,7 +97,6 @@ const Isseus = () => {
 	const firstPost = lastPost - posts;
 	const currentPosts = issue.slice(firstPost, lastPost);
 	const paginate = (pageNumber) => setCurrentPage(pageNumber);
-	console.log(currentPage);
 
 	return (
 		<IssuesSection>
