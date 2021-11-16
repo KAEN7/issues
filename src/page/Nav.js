@@ -10,7 +10,7 @@ const NavSection = styled.div`
 	height: 3rem;
 	position: sticky;
 	bottom: 0;
-
+	z-index: 2;
 	background: rgba(23, 23, 23, 1);
 
 	.btn:hover {
