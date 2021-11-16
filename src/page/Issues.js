@@ -8,6 +8,7 @@ import {
 } from "../components/utils/theme";
 import axios from "axios";
 import Pagination from "./Pagination";
+import Loading from "../components/Loading";
 
 const IssuesSection = styled.div`
 	${pageSetting}
@@ -61,6 +62,7 @@ const Isseus = () => {
 	const [issue, setIssue] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
 	const [posts] = useState(10); // 페이지당 최대 게시글 수
+	const [loading, setLoading] = useState(true);
 
 	// repoRegister 개수만큼 요청 후 해당 이슈만큼 map으로 뿌려줌
 	useEffect(() => {
@@ -87,6 +89,7 @@ const Isseus = () => {
 					);
 			}
 
+			setLoading(!loading);
 			setIssue(temp);
 		};
 
@@ -108,16 +111,20 @@ const Isseus = () => {
 			/>
 
 			<ul>
-				{currentPosts.map((data, idx) => (
-					<IssueBox
-						key={idx}
-						onClick={() => window.open(`${data.html_url}`, "_blank")}
-					>
-						<h2>{data.title}</h2>
-						<h4>{data.repo}</h4>
-						<div>{data.body}</div>
-					</IssueBox>
-				))}
+				{loading ? (
+					<Loading />
+				) : (
+					currentPosts.map((data, idx) => (
+						<IssueBox
+							key={idx}
+							onClick={() => window.open(`${data.html_url}`, "_blank")}
+						>
+							<h2>{data.title}</h2>
+							<h4>{data.repo}</h4>
+							<div>{data.body}</div>
+						</IssueBox>
+					))
+				)}
 			</ul>
 		</IssuesSection>
 	);
