@@ -40,8 +40,6 @@ const RepoDelBtn = styled.button`
 	margin: 0.5rem;
 	background: ${color.point};
 	border-radius: 2vh;
-
-	// 액티브시 안쪽 그림자 넣어서 들어게 하면 어떰
 `;
 
 const Repogitory = () => {

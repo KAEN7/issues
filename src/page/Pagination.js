@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { flexCenter, color } from "../components/utils/theme";
 
 const PaginationSection = styled.ul`

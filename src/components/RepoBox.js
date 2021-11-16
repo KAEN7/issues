@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { flexCenter, flexCenterDir, color } from "./utils/theme";
+import { flexCenter, color } from "./utils/theme";
 
 const RepoListBox = styled.div`
 	width: 30rem;
@@ -67,4 +67,4 @@ const RepoBox = ({ data, repoSetHandler }) => {
 	);
 };
 
-export default RepoBox;
+export default React.memo(RepoBox);

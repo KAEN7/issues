@@ -123,4 +123,4 @@ const Isseus = () => {
 	);
 };
 
-export default Isseus;
+export default React.memo(Isseus);
