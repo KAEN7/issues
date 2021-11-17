@@ -32,7 +32,7 @@ const RepoList = styled.ul`
 	}
 `;
 
-const RepoForm = ({ repo }) => {
+const RepoForm = () => {
 	const [value, setValue] = useState("");
 	const [result, setResult] = useState([]);
 	const [toastMsg, setToastMsg] = useState("");

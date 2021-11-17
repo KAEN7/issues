@@ -55,7 +55,7 @@ const Landing = () => {
 			{toggle && !username ? (
 				<NameForm changeHandler={changeHandler} />
 			) : (
-				<RepoForm repo={repo} />
+				<RepoForm />
 			)}
 		</LandingSection>
 	);

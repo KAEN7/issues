@@ -7,54 +7,17 @@ import {
 	overflowY,
 } from "../components/utils/theme";
 import axios from "axios";
+
+// 컴포넌트
 import Pagination from "./Pagination";
 import Loading from "../components/Loading";
+import IssuesList from "../components/IssuesList";
 
 const IssuesSection = styled.div`
 	${pageSetting}
 
 	button {
 		margin-top: 25rem;
-	}
-`;
-
-const IssueBox = styled.li`
-	${flexCenterDir}
-
-	align-items: flex-start;
-	width: 30rem;
-	min-height: 8rem;
-	max-height: 15rem;
-	margin: 2rem;
-	padding: 1rem;
-	box-sizing: border-box;
-	background: black;
-	cursor: pointer;
-
-	overflow: hidden;
-	${overflowY}
-
-	&:hover {
-		box-shadow: 13px 14px ${color.white};
-		transform: translateY(-10px);
-		transition-duration: 0.4s;
-	}
-
-	h2 {
-		margin-bottom: 1rem;
-		border-bottom: 2px solid ${color.white};
-	}
-
-	h4 {
-		width: 100%;
-		color: ${color.point};
-		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 1rem;
-	}
-
-	div {
-		width: 100%;
 	}
 `;
 
@@ -71,31 +34,34 @@ const Isseus = () => {
 		const username = localStorage.getItem("username");
 		const repoRegister = JSON.parse(localStorage.getItem("repoRegister"));
 
-		const getRepo = async () => {
-			for (let i = 0; i < repoRegister.length; i++) {
-				let url = `https://api.github.com/repos/${username}/${repoRegister[i].name}/issues`;
+		if (repoRegister) {
+			const getRepo = async () => {
+				for (let i = 0; i < repoRegister.length; i++) {
+					let url = `https://api.github.com/repos/${username}/${repoRegister[i].name}/issues`;
 
-				await axios
-					.get(url, {
-						headers: {
-							Accept: "application/vnd.github.nightshade-preview+json",
-						},
-					})
-					.then((res) =>
-						res.data.forEach((el) => {
-							el.repo = repoRegister[i].name;
-							temp.push(el);
+					await axios
+						.get(url, {
+							headers: {
+								Accept: "application/vnd.github.nightshade-preview+json",
+							},
 						})
-					);
-			}
+						.then((res) =>
+							res.data.forEach((el) => {
+								el.repo = repoRegister[i].name;
+								temp.push(el);
+							})
+						);
+				}
 
-			setLoading(!loading);
-			setIssue(temp);
-		};
+				setLoading(!loading);
+				setIssue(temp);
+			};
 
-		getRepo();
+			getRepo();
+		}
 	}, []);
 
+	// pagination 변수
 	const lastPost = currentPage * posts;
 	const firstPost = lastPost - posts;
 	const currentPosts = issue.slice(firstPost, lastPost);
@@ -115,14 +81,7 @@ const Isseus = () => {
 					<Loading />
 				) : (
 					currentPosts.map((data, idx) => (
-						<IssueBox
-							key={idx}
-							onClick={() => window.open(`${data.html_url}`, "_blank")}
-						>
-							<h2>{data.title}</h2>
-							<h4>{data.repo}</h4>
-							<div>{data.body}</div>
-						</IssueBox>
+						<IssuesList data={data} idx={idx}></IssuesList>
 					))
 				)}
 			</ul>

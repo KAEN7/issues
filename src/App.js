@@ -7,7 +7,6 @@ import Landing from "./page/Landing";
 import Nav from "./page/Nav";
 import Repogitory from "./page/Repogitory";
 import Issues from "./page/Issues";
-import ToastPopup from "./components/ToastPopup";
 
 const GlobalStyles = createGlobalStyle`
 	* {

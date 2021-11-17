@@ -14,7 +14,6 @@ import RepositoryIcon from "../img/Repository.svg";
 // 컴포넌트
 import RepoBox from "../components/RepoBox";
 import ToastPopup from "../components/ToastPopup";
-import Toast from "../components/Toast";
 
 const RepoSection = styled.div`
 	${pageSetting}
@@ -91,11 +90,6 @@ const Repogitory = () => {
 		handleToast();
 	};
 
-	const test = () => {
-		setToastMsg("test");
-		handleToast();
-	};
-
 	return (
 		<RepoSection>
 			<ToastPopup message={toastMsg} ToastStatus={ToastStatus} />
@@ -106,7 +100,6 @@ const Repogitory = () => {
 			<RepoBtnBox>
 				<RepoDelBtn onClick={usernameDel}>계정 정보 삭제</RepoDelBtn>
 				<RepoDelBtn onClick={allRepoDel}>전체 Repository 삭제</RepoDelBtn>
-				<RepoDelBtn onClick={test}>test</RepoDelBtn>
 			</RepoBtnBox>
 			{repoRegister === null || repoRegister.length === 0 ? (
 				<h3>현재 등록된 Repogitory가 없습니다</h3>
