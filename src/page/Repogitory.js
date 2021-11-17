@@ -13,6 +13,8 @@ import RepositoryIcon from "../img/Repository.svg";
 
 // 컴포넌트
 import RepoBox from "../components/RepoBox";
+import ToastPopup from "../components/ToastPopup";
+import Toast from "../components/Toast";
 
 const RepoSection = styled.div`
 	${pageSetting}
@@ -43,6 +45,8 @@ const RepoDelBtn = styled.button`
 `;
 
 const Repogitory = () => {
+	const [toast, setToast] = useState(true);
+	const [toastMsg, setToastMsg] = useState("");
 	// 삭제됬을때 재렌더링을 위해 상태로 관리
 	const [repoRegister, setRepoRegister] = useState(
 		JSON.parse(localStorage.getItem("repoRegister"))
@@ -69,6 +73,12 @@ const Repogitory = () => {
 		alert("모든 Repository가 삭제되었습니다");
 	};
 
+	const test = () => {
+		console.log("test");
+		setToast(!toast);
+		setToastMsg("테스트용 버튼");
+	};
+
 	return (
 		<RepoSection>
 			<Link to="/" className="logo">
@@ -77,6 +87,7 @@ const Repogitory = () => {
 			<RepoBtnBox>
 				<RepoDelBtn onClick={usernameDel}>계정 정보 삭제</RepoDelBtn>
 				<RepoDelBtn onClick={allRepoDel}>전체 Repository 삭제</RepoDelBtn>
+				<RepoDelBtn onClick={test}>test</RepoDelBtn>
 			</RepoBtnBox>
 			{repoRegister === null ? (
 				<h3>현재 등록된 Repogitory가 없습니다</h3>
@@ -85,6 +96,7 @@ const Repogitory = () => {
 					<RepoBox key={idx} data={data} repoSetHandler={repoSetHandler} />
 				))
 			)}
+			<ToastPopup>{toast && <Toast message={toastMsg} />}</ToastPopup>
 		</RepoSection>
 	);
 };

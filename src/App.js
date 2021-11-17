@@ -7,6 +7,7 @@ import Landing from "./page/Landing";
 import Nav from "./page/Nav";
 import Repogitory from "./page/Repogitory";
 import Issues from "./page/Issues";
+import ToastPopup from "./components/ToastPopup";
 
 const GlobalStyles = createGlobalStyle`
 	* {
@@ -61,6 +62,7 @@ function App() {
 		<div className="App">
 			<Router>
 				<GlobalStyles />
+
 				<Routes>
 					<Route exact path="/" element={<Landing />} />
 					<Route path="/repo" element={<Repogitory />} />
