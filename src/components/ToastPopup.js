@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { flexCenterDir, color } from "../components/utils/theme";
 
@@ -12,34 +12,16 @@ const ToastSection = styled.div`
 	justify-content: flex-start;
 	width: 20rem;
 	height: 100vh;
-	position: sticky;
+	position: fixed;
 	top: 0;
-	z-index: 2;
-	/* background: none; */
-	background: white;
+	right: 0;
+	z-index: -1;
+	background: none;
 `;
 
-const ToastPopup = ({ message }) => {
-	const [ToastStatus, setToastStatus] = useState(false);
-
-	const handleToast = (type) => {
-		if (!ToastStatus) {
-			setToastStatus(true);
-		}
-	};
-
-	useEffect(() => {
-		if (ToastStatus) {
-			setTimeout(() => {
-				setToastStatus(false);
-			}, 1000);
-		}
-	}, [ToastStatus]);
-
+const ToastPopup = ({ message, ToastStatus }) => {
 	return (
-		<ToastSection>
-			<Toast />
-		</ToastSection>
+		<ToastSection>{ToastStatus && <Toast message={message} />}</ToastSection>
 	);
 };
 

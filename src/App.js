@@ -59,18 +59,16 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
 	return (
-		<div className="App">
-			<Router>
-				<GlobalStyles />
+		<Router>
+			<GlobalStyles />
 
-				<Routes>
-					<Route exact path="/" element={<Landing />} />
-					<Route path="/repo" element={<Repogitory />} />
-					<Route path="/issues" element={<Issues />} />
-				</Routes>
-				<Nav />
-			</Router>
-		</div>
+			<Routes>
+				<Route exact path="/" element={<Landing />} />
+				<Route path="/repo" element={<Repogitory />} />
+				<Route path="/issues" element={<Issues />} />
+			</Routes>
+			<Nav />
+		</Router>
 	);
 }
 

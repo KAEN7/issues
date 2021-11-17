@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import ToastPopup from "./ToastPopup";
 import { flexCenter, flexCenterDir, color } from "./utils/theme";
 
 const RepoFormSection = styled.form`
@@ -34,6 +35,23 @@ const RepoList = styled.ul`
 const RepoForm = ({ repo }) => {
 	const [value, setValue] = useState("");
 	const [result, setResult] = useState([]);
+	const [toastMsg, setToastMsg] = useState("");
+	const [ToastStatus, setToastStatus] = useState(false);
+
+	// toast message fc
+	const handleToast = () => {
+		if (!ToastStatus) {
+			setToastStatus(true);
+		}
+	};
+
+	useEffect(() => {
+		if (ToastStatus) {
+			setTimeout(() => {
+				setToastStatus(false);
+			}, 1000);
+		}
+	}, [ToastStatus]);
 
 	const onChange = (e) => {
 		e.preventDefault();
@@ -48,14 +66,16 @@ const RepoForm = ({ repo }) => {
 		if (!saveRepo) {
 			const repoRegister = JSON.stringify([{ name: name, url: url }]);
 			localStorage.setItem("repoRegister", repoRegister);
-			alert(
+			setToastMsg(
 				"선택하신 Repository가 저장되었습니다 \n최상단 로고를 눌러 이동해주세요"
 			);
+			handleToast();
 		} else {
 			let boo = true;
 			saveRepo.forEach((el) => {
 				if (el.name === name) {
-					alert("이미 등록된 Repository입니다");
+					setToastMsg("이미 등록된 Repository입니다");
+					handleToast();
 					boo = false;
 				}
 			});
@@ -64,17 +84,21 @@ const RepoForm = ({ repo }) => {
 					"repoRegister",
 					JSON.stringify([...saveRepo, { name: name, url: url }])
 				);
-				alert(
+				setToastMsg(
 					"선택하신 Repository가 저장되었습니다 \n최상단 로고를 눌러 이동해주세요"
 				);
+				handleToast();
 			} else if (saveRepo.length >= 4) {
-				alert("Repository는 최대 4개까지 등록할 수 있습니다");
+				setToastMsg("Repository는 최대 4개까지 등록할 수 있습니다");
+				handleToast();
 			}
 		}
 	};
 
 	return (
 		<RepoFormSection onChange={onChange}>
+			<ToastPopup message={toastMsg} ToastStatus={ToastStatus} />
+
 			<input
 				placeholder="레포지토리명을 입력해주세요"
 				value={value}

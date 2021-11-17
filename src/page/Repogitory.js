@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import {
 	flexCenter,
@@ -45,8 +45,24 @@ const RepoDelBtn = styled.button`
 `;
 
 const Repogitory = () => {
-	const [toast, setToast] = useState(true);
 	const [toastMsg, setToastMsg] = useState("");
+	const [ToastStatus, setToastStatus] = useState(false);
+
+	// toast message fc
+	const handleToast = () => {
+		if (!ToastStatus) {
+			setToastStatus(true);
+		}
+	};
+
+	useEffect(() => {
+		if (ToastStatus) {
+			setTimeout(() => {
+				setToastStatus(false);
+			}, 1000);
+		}
+	}, [ToastStatus]);
+
 	// 삭제됬을때 재렌더링을 위해 상태로 관리
 	const [repoRegister, setRepoRegister] = useState(
 		JSON.parse(localStorage.getItem("repoRegister"))
@@ -63,24 +79,27 @@ const Repogitory = () => {
 		localStorage.removeItem("repoData");
 		localStorage.removeItem("repoRegister");
 
-		alert("계정정보가 삭제되었습니다");
+		setToastMsg("계정정보가 삭제되었습니다");
+		handleToast();
 	};
 
 	// 전체 레포지토리 삭제 핸들러
 	const allRepoDel = () => {
 		localStorage.removeItem("repoRegister");
 
-		alert("모든 Repository가 삭제되었습니다");
+		setToastMsg("모든 Repository가 삭제되었습니다");
+		handleToast();
 	};
 
 	const test = () => {
-		console.log("test");
-		setToast(!toast);
-		setToastMsg("테스트용 버튼");
+		setToastMsg("test");
+		handleToast();
 	};
 
 	return (
 		<RepoSection>
+			<ToastPopup message={toastMsg} ToastStatus={ToastStatus} />
+
 			<Link to="/" className="logo">
 				<img src={RepositoryIcon} alt="Repository" />
 			</Link>
@@ -89,14 +108,13 @@ const Repogitory = () => {
 				<RepoDelBtn onClick={allRepoDel}>전체 Repository 삭제</RepoDelBtn>
 				<RepoDelBtn onClick={test}>test</RepoDelBtn>
 			</RepoBtnBox>
-			{repoRegister === null ? (
+			{repoRegister === null || repoRegister.length === 0 ? (
 				<h3>현재 등록된 Repogitory가 없습니다</h3>
 			) : (
 				repoRegister.map((data, idx) => (
 					<RepoBox key={idx} data={data} repoSetHandler={repoSetHandler} />
 				))
 			)}
-			<ToastPopup>{toast && <Toast message={toastMsg} />}</ToastPopup>
 		</RepoSection>
 	);
 };
