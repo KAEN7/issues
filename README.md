@@ -1,5 +1,6 @@
 ## 프로젝트 소개
 
+![Issues](https://user-images.githubusercontent.com/68473415/142157694-4a7d99d8-953c-4d66-9012-5a8c4f2449d5.gif)
 issues는 자주 가는 Github Public Repository의 issue들을 한눈에 볼 수 있게 모아서 보여주는 사이트입니다.
 
 ## 설치 및 실행 방법
@@ -21,6 +22,7 @@ yarn start
 
 1. 본인의 Github 계정명을 입력해주세요.
 2. 원하시는 Repository명을 검색해주세요.
-3. 원하시는 Repository를 등록하시고 저장된 Repository 목록을 볼수 있습니다.
-   3-1. 여기서 저장된 계정명과 등록된 Repository를 삭제할 수 있습니다.
+3. 원하시는 Repository를 등록하시고 저장된 Repository 목록을 볼수 있습니다.  
+3-1. 여기서 저장된 계정명과 등록된 Repository를 삭제할 수 있습니다.  
+3-2. 일부 Repository만 삭제할 수도 있습니다.
 4. 저장하신 Repository에 있는 모든 issue들을 한 눈에 확인할 수 있습니다.
