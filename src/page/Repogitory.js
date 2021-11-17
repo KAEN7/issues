@@ -25,6 +25,12 @@ const RepoSection = styled.div`
 
 		margin-top: 15rem;
 	}
+
+	img {
+		@media ${(props) => props.theme.tablet} {
+			height: 4rem;
+		}
+	}
 `;
 
 const RepoBtnBox = styled.div`

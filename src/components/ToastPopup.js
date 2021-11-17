@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { flexCenterDir, color } from "../components/utils/theme";
+import { flexCenterDir } from "../components/utils/theme";
 
 // 컴포넌트
 import Toast from "./Toast";

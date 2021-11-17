@@ -19,6 +19,10 @@ const RepoListBox = styled.div`
 			z-index: 1;
 		}
 	}
+
+	@media ${(props) => props.theme.tablet} {
+		width: 14rem;
+	}
 `;
 
 const RepoListOuter = styled.div`
@@ -28,6 +32,10 @@ const RepoListOuter = styled.div`
 	height: 6rem;
 	background: ${color.gray};
 	font-size: 1.3rem;
+
+	@media ${(props) => props.theme.tablet} {
+		width: 14rem;
+	}
 `;
 
 const RepoListInner = styled.div`

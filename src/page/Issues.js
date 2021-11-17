@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import {
-	flexCenterDir,
-	pageSetting,
-	color,
-	overflowY,
-} from "../components/utils/theme";
+import { pageSetting } from "../components/utils/theme";
 import axios from "axios";
 
 // 컴포넌트
@@ -79,9 +74,11 @@ const Isseus = () => {
 			<ul>
 				{loading ? (
 					<Loading />
+				) : currentPosts.length === 0 ? (
+					<h2 style={{ marginTop: "20rem" }}>저장된 issues가 없어요</h2>
 				) : (
 					currentPosts.map((data, idx) => (
-						<IssuesList data={data} idx={idx}></IssuesList>
+						<IssuesList data={data} key={idx}></IssuesList>
 					))
 				)}
 			</ul>

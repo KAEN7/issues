@@ -24,6 +24,10 @@ const IssueBox = styled.li`
 		transition-duration: 0.4s;
 	}
 
+	@media ${(props) => props.theme.tablet} {
+		width: 15rem;
+	}
+
 	h2 {
 		margin-bottom: 1rem;
 		border-bottom: 2px solid ${color.white};
@@ -42,12 +46,9 @@ const IssueBox = styled.li`
 	}
 `;
 
-const IssuesList = ({ data, idx }) => {
+const IssuesList = ({ data }) => {
 	return (
-		<IssueBox
-			key={idx}
-			onClick={() => window.open(`${data.html_url}`, "_blank")}
-		>
+		<IssueBox onClick={() => window.open(`${data.html_url}`, "_blank")}>
 			<h2>{data.title}</h2>
 			<h4>{data.repo}</h4>
 			<div>{data.body}</div>

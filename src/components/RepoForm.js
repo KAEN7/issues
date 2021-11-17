@@ -84,9 +84,7 @@ const RepoForm = () => {
 					"repoRegister",
 					JSON.stringify([...saveRepo, { name: name, url: url }])
 				);
-				setToastMsg(
-					"선택하신 Repository가 저장되었습니다 \n최상단 로고를 눌러 이동해주세요"
-				);
+				setToastMsg("선택하신 Repository가 저장되었습니다");
 				handleToast();
 			} else if (saveRepo.length >= 4) {
 				setToastMsg("Repository는 최대 4개까지 등록할 수 있습니다");

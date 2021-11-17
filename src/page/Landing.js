@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { pageSetting, fadeIn } from "../components/utils/theme";
 import { Link } from "react-router-dom";
@@ -18,13 +18,17 @@ const LandingSection = styled.div`
 
 		margin-top: 15rem;
 		margin-bottom: 3rem;
+
+		@media ${(props) => props.theme.tablet} {
+			margin-top: 10rem;
+		}
 	}
 
 	img {
 		height: 10rem;
 
 		@media ${(props) => props.theme.tablet} {
-			height: 7rem;
+			height: 4rem;
 		}
 	}
 
@@ -35,11 +39,9 @@ const LandingSection = styled.div`
 `;
 
 const Landing = () => {
-	const [repo, setRepo] = useState([]);
 	const [toggle, setToggle] = useState(true);
 
 	const changeHandler = (data) => {
-		setRepo(data);
 		const repoData = JSON.stringify(data);
 		localStorage.setItem("repoData", repoData);
 		setToggle(!toggle);
